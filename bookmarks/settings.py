@@ -25,12 +25,20 @@ SECRET_KEY = 'django-insecure-se@7(=sgk7%$0c8o+5g$u6ggz+*&4(46pu$4t0)7qtdszvg($@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['moja-witryna.pl', 'localhost', '127.0.0.1']
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'account.authentication.EmailAuthBackend',
+    'social.backends.facebook.FacebookOAuth2',
+]
+
 
 
 # Application definition
 
 INSTALLED_APPS = [
+
     'account.apps.AccountConfig',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -38,6 +46,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
+    'social_django',
+    'django_extensions',
+    'social.apps.django_app.default',
 ]
 
 MIDDLEWARE = [
@@ -131,3 +142,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+SOCIAL_AUTH_FACEBOOK_KEY = '342990090923100'
+SOCIAL_AUTH_FACEBOOK_SECRET = '3c8f2adf71aed655192c688b297d690a'
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
